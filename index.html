@@ -39,7 +39,7 @@
           <div class="container">
   <br />
       <h2 style="text-align: center; font-family: greetings"> <i class="fa fa-hospital-alt" style="color: red;"></i><br />COVID-19 FATALITY CHECKUP </h2>
-      <form class="form-signin" method="post" action="checkup.php">
+      <form class="form-signin" method="post" onsubmit="return results();">
         <label for="inputEmail"><i class="fa fa-pen-alt" ></i> Your name</label>
         <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required autofocus>
         <div class="invalid-feedback">
@@ -52,10 +52,10 @@
       </span>
       <br />
         <label for="select">Gender</label>
-        <select class="form-control" name="gender" required="required">
+        <select class="form-control" name="gender" id="gender" required="required">
           <option value="0">None</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
+                <option id="male" value="Male">Male</option>
+                <option id="female" value="Female">Female</option>
         </select>
       <br />
       <label for="inputLocation"><i class="fa fa-pen-alt"></i> Your location</label>
@@ -71,72 +71,168 @@
         <h4 style="text-align: center; font-family: greetings"><i class="fa fa-heartbeat" style="color: red;"></i> COVID-19 SYMPTOMS</h4>
        <div class="btn-group" data-toggle="buttons">
         <label class="btn btn-danger active">
-         <input type="checkbox" name="symptoms_a"  value="You have fever" autocomplete="off">
+         <input type="checkbox" name="symptoms_a" id="symptoms_a"  value="You have fever" autocomplete="off">
          Do you have fever?
          </label>
        </div>
        <div class="btn-group" data-toggle="buttons">
         <label class="btn btn-danger active">
-         <input type="checkbox" name="symptoms_b"  value="You have cough" autocomplete="off">
+         <input type="checkbox" name="symptoms_b" id="symptoms_b"  value="You have cough" autocomplete="off">
          Do you have cough?
          </label>
        </div>
        <div class="btn-group" data-toggle="buttons">
         <label class="btn btn-danger active">
-         <input type="checkbox" name="symptoms_c" value="You are experiencing respiratory stress" autocomplete="off">
+         <input type="checkbox" name="symptoms_c" id="symptoms_c" value="You are experiencing respiratory stress" autocomplete="off">
          Do you have respiratory stress?
          </label>
        </div>
        <div class="btn-group" data-toggle="buttons">
         <label class="btn btn-danger active">
-         <input type="checkbox" name="symptoms_d" autocomplete="off" value="You feel tired">
+         <input type="checkbox" name="symptoms_d" id="symptoms_d" autocomplete="off" value="You feel tired">
          Do you feel tired?
          </label>
        </div>
        <div class="btn-group" data-toggle="buttons">
         <label class="btn btn-danger active">
-         <input type="checkbox" name="symptoms_e" autocomplete="off" value="You have aches and pains">
+         <input type="checkbox" name="symptoms_e" id="symptoms_e" autocomplete="off" value="You have aches and pains">
          Do you have aches and pains?
          </label>
        </div>
        <br />
        <div class="btn-group" data-toggle="buttons">
         <label class="btn btn-danger active">
-         <input type="checkbox" name="symptoms_f" autocomplete="off" value="You are experiencing nasal congestion and running nose">
+         <input type="checkbox" name="symptoms_f" id="symptoms_f" autocomplete="off" value="You are experiencing nasal congestion and running nose">
          Do you have nasal congestion or running nose?
          </label>
        </div>
        <div class="btn-group" data-toggle="buttons">
         <label class="btn btn-danger active">
-         <input type="checkbox" name="symptoms_g" autocomplete="off" value="You have cold">
+         <input type="checkbox" name="symptoms_g" id="symptoms_g" autocomplete="off" value="You have cold">
          Do you feel cold?
          </label>
        </div>
        <div class="btn-group" data-toggle="buttons">
         <label class="btn btn-danger active">
-         <input type="checkbox" name="symptoms_h" autocomplete="off" value="Your body temperature is high">
+         <input type="checkbox" name="symptoms_h" id="symptoms_h" autocomplete="off" value="Your body temperature is high">
          Is your body temperature high?
          </label>
        </div>
        <div class="btn-group" data-toggle="buttons">
         <label class="btn btn-danger active">
-         <input type="checkbox" name="symptoms_i" autocomplete="off" value="You have fatigue">
+         <input type="checkbox" name="symptoms_i" id="symptoms_i" autocomplete="off" value="You have fatigue">
          Are you experiencing fatigue?
          </label>
        </div>
        <div class="btn-group" data-toggle="buttons">
         <label class="btn btn-danger active">
-         <input type="checkbox" name="symptoms_j" autocomplete="off" value="You are experiencing Difficulty in breathing">
+         <input type="checkbox" name="symptoms_j" id="symptoms_j" autocomplete="off" value="You are experiencing Difficulty in breathing">
          Do you have difficulty in breathing?
          </label>
        </div>
         <br /><br />
-        <button class="btn btn-lg  btn-outline-danger" type="submit"><i class="fa fa-hospital-alt"></i> Check your fatality rate </button>
+        <button class="btn btn-lg  btn-outline-danger" id="submit" type="submit"><i class="fa fa-hospital-alt"></i> Check your fatality rate </button>
       <br />
-   
-    </div> <!-- /container -->
+      </div> <!-- /container -->
     </form>
         </div>
+    <script type="text/javascript">
+      function results() {
+
+  var name = document.getElementById('name').value;
+  var age = document.getElementById('age').value;
+  var gender = document.getElementById('gender').value;
+  var location = document.getElementById('location').value;
+  var contact = document.getElementById('contact').value;
+  var symptoms_a = document.getElementById('symptoms_a').value;
+  var symptoms_b = document.getElementById('symptoms_b').value;
+  var symptoms_c = document.getElementById('symptoms_c').value;
+  var symptoms_d = document.getElementById('symptoms_d').value;
+  var symptoms_e = document.getElementById('symptoms_e').value;
+  var symptoms_f = document.getElementById('symptoms_f').value;
+  var symptoms_g = document.getElementById('symptoms_g').value;
+  var symptoms_h = document.getElementById('symptoms_h').value;
+  var symptoms_i = document.getElementById('symptoms_i').value;
+  var symptoms_j = document.getElementById('symptoms_j').value;
+
+  document.write("<h2>Your Fatality Rate</h2><br />");
+if (age>0 & age<=5) {
+  document.write ("Dear, "+name+"! In your age fatality rate of contacting corona virus is 0.00% <br /><br /><br />");
+}else if (age>=5 & age<=10) {
+  document.write ("Dear, "+name+"! In your age fatality rate of corona contacting virus is 0.1%");
+}else if (age>=10 & age<=19) {
+  document.write ("Dear, "+name+"! In your age fatality rate of corona contacting virus is 0.2%");
+}else if (age>=20 & age<=29) {
+  document.write ("Dear, "+name+"! In your age fatality rate of corona contacting virus is 0.2%");
+}else if (age>=30 & age<=39) {
+  document.write ("Dear, "+name+"! In your age fatality rate of corona contacting virus is 0.3%");
+}else if (age>=40 & age<=49) {
+  document.write ("Dear, "+name+"! In your age fatality rate of corona contacting virus is 0.4%");
+}else if (age>=50 & age<=59) {
+  document.write ("Dear, "+name+"! In your age fatality rate of corona contacting virus is 1.3%");
+}else if (age>=60 & age<=69) {
+  document.write ("Dear, "+name+"! In your age fatality rate of corona contacting virus is 3.6%");
+}else if (age>=70 & age<=79) {
+  document.write ("Dear, "+name+"! In your age fatality rate of corona contacting virus is 8.0%");
+}else if (age>=80 & age<=89) {
+  document.write ("Dear, "+name+"! In your age fatality rate of corona contacting virus is 14.8%");
+}else if (age>=90 & age<=99) {
+  document.write ("Dear, "+name+"! In your age fatality rate of corona contacting virus is 24.8%");
+}
+/**
+ document.write("<h3>Your Personal Data<br /></h3>");
+ document.write("Your Name: " +name+"<br />");
+ document.write("Your Age: "+age+ "<br />");
+ document.write("Your Gender: "+gender+"<br />");
+ document.write("Your Location: "+location+"<br />");
+ document.write("Your Contact: "+contact+"<br />");
+ document.write("<h3>Your Symptoms<br /></h3>");
+ document.write("Symptoms of: "+symptoms_a+"<br />");
+ document.write("Symptoms of: "+symptoms_b+"<br />");
+ document.write("Symptoms of: "+symptoms_c+"<br />");
+ document.write("Symptoms of: "+symptoms_d+"<br />");
+ document.write("Symptoms of: "+symptoms_e+"<br />");
+ document.write("Symptoms of: "+symptoms_f+"<br />");
+ document.write("Symptoms of: "+symptoms_g+"<br />");
+ document.write("Symptoms of: "+symptoms_h+"<br />");
+ document.write("Symptoms of: "+symptoms_i+"<br />");
+document.write("Symptoms of: "+symptoms_j+"<br />");
+  **/
+if (document.getElementById('symptoms_a').checked) {
+  symptoms_a = document.getElementById('symptoms_a').value;
+}else if(document.getElementById('symptoms_b').checked){
+  symptoms_b = document.getElementById('symptoms_b').value;
+}else if(documentgetElementById('symptoms_c').checked){
+  symptoms_b = document.getElementById('symptoms_c').value;
+}else if(document.getElementById('symptoms_d').checked){
+  symptoms_b = document.getElementById('symptoms_d').value;
+}else if(document.getElementById('symptoms_e').checked){
+  symptoms_b = document.getElementById('symptoms_e').value;
+}else if(document.getElementById('symptoms_f').checked){
+  symptoms_b = document.getElementById('symptoms_f').value;
+}else if(document.getElementById('symptoms_g').checked){
+  symptoms_b = document.getElementById('symptoms_g').value;
+}else if(document.getElementById('symptoms_h').checked){
+  symptoms_b = document.getElementById('symptoms_h').value;
+}else if(document.getElementById('symptoms_i').checked){
+  symptoms_b = document.getElementById('symptoms_i').value;
+}else if(document.getElementById('symptoms_j').checked){
+  symptoms_b = document.getElementById('symptoms_j').value;
+}
+
+ document.write("Symptoms of: "+symptoms_a+"<br />");
+ document.write("Symptoms of: "+symptoms_b+"<br />");
+ document.write("Symptoms of: "+symptoms_c+"<br />");
+ document.write("Symptoms of: "+symptoms_d+"<br />");
+ document.write("Symptoms of: "+symptoms_e+"<br />");
+ document.write("Symptoms of: "+symptoms_f+"<br />");
+ document.write("Symptoms of: "+symptoms_g+"<br />");
+ document.write("Symptoms of: "+symptoms_h+"<br />");
+ document.write("Symptoms of: "+symptoms_i+"<br />");
+document.write("Symptoms of: "+symptoms_j+"<br />");
+}
+
+    </script>
         <div class="tab-pane fade" id="profile2" role="tabpanel">
           <br /><b style='margin-left:15px;'>Quick tips on how to help stop the spread of COVID-19 (CORONA VIRUS):</b><br /><ol><li>Stay at home </li><li>Use face mask</li><li>Wash your hands with soap, or use alcohol-base hand rub kills viruses that may be on your hands.</li><li>Maintain social distancing </li><li>Avoid touching your eyes, nose and mouth</li><li>Cover your mouth with your elbow when coughing, or if you use tissue paper make sure you discard it properly</li></ol>
       
@@ -156,7 +252,7 @@ Stay informed on the latest developments about <b>COVID-19</b>. <br />Follow adv
         <div class="col-md-8 order-md-1">
         <br /><br />
           <h4 class="mb-3">Get in touch with us</h4>
-          <form method="post" action="inc/sendEmail.php">
+          <form method="post" action="mailto:enyidavid87@gmal.com">
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="contactName">Name</label>
